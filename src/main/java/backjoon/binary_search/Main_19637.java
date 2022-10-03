@@ -37,16 +37,16 @@ public class Main_19637 {
             int min = 0;
             int max = types.size() - 1;
 
-            while (min <= max) {
+            while (min < max) {
                 int mid = (min + max) / 2;
 
-                if (power > types.get(mid).power) {
-                    min = mid + 1;
+                if (power <= types.get(mid).power) {
+                    max = mid;
                 } else {
-                    max = mid - 1;
+                    min = mid + 1;
                 }
             }
-            sb.append(types.get(max + 1).name).append("\n");
+            sb.append(types.get(max).name).append("\n");
         }
         System.out.println(sb);
     }
