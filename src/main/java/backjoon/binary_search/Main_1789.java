@@ -4,32 +4,24 @@ import java.util.Scanner;
 
 public class Main_1789 {
 
-    static long S, ans = 0;
-
-    static void func(long start, long end) {
-        if (start > end) {
-            return;
-        }
-        long mid = (start + end) / 2;
-        long sum = (mid * (mid + 1)) / 2; // 1 ~ mid 까지 총 합
-
-        if (sum > S) {
-            func(start, mid - 1);
-        }
-        else if (sum < S) {
-            ans = Math.max(ans, mid);
-            func(mid + 1, end);
-        }
-        else {
-            ans = mid;
-        }
-    }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        S = sc.nextLong();
+        long S = sc.nextLong();
+        long min = 1;
+        long max = S;
+        long ans = 0;
 
-        func(1, S);
+        while (min <= max) {
+            long mid = (min + max) / 2;
+            long sum = (mid * (mid + 1)) / 2;
+
+            if (sum <= S) {
+                ans = mid;
+                min = mid + 1;
+            } else {
+                max = mid - 1;
+            }
+        }
         System.out.println(ans);
     }
 }
