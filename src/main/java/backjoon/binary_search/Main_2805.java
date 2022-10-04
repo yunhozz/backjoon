@@ -24,21 +24,21 @@ public class Main_2805 {
         long min = 0;
         long max = arr[N - 1];
 
-        while (min < max) {
-            long mid = (min + max) / 2;
+        while (min <= max) {
+            long mid = (min + max) / 2; // 톱의 높이
             long sum = 0;
 
-            for (long n : arr) {
-                if (n >= mid) {
-                    sum += (n - mid);
+            for (long l : arr) {
+                if (l > mid) {
+                    sum += (l - mid);
                 }
             }
             if (sum < M) {
-                max = mid;
+                max = mid - 1;
             } else {
                 min = mid + 1;
             }
         }
-        System.out.println(min - 1);
+        System.out.println(max);
     }
 }
