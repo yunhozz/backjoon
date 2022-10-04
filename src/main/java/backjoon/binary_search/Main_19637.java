@@ -21,15 +21,15 @@ public class Main_19637 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        String[] input1 = br.readLine().split(" ");
-        int N = Integer.parseInt(input1[0]); // 칭호 개수
-        int M = Integer.parseInt(input1[1]); // 캐릭터 개수
+        String[] number = br.readLine().split(" ");
+        int N = Integer.parseInt(number[0]); // 칭호의 개수
+        int M = Integer.parseInt(number[1]); // 캐릭터 개수
 
-        List<Main_.Type> types = new ArrayList<>();
+        List<Type> types = new ArrayList<>();
 
         for (int n = 0; n < N; n++) {
-            String[] input2 = br.readLine().split(" ");
-            Main_.Type type = new Main_.Type(input2[0], Long.parseLong(input2[1]));
+            String[] input = br.readLine().split(" ");
+            Type type = new Type(input[0], Long.parseLong(input[1]));
             types.add(type);
         }
         for (int m = 0; m < M; m++) {
@@ -37,16 +37,16 @@ public class Main_19637 {
             int min = 0;
             int max = types.size() - 1;
 
-            while (min <= max) {
+            while (min < max) {
                 int mid = (min + max) / 2;
 
-                if (power > types.get(mid).power) {
-                    min = mid + 1;
+                if (power <= types.get(mid).power) {
+                    max = mid;
                 } else {
-                    max = mid - 1;
+                    min = mid + 1;
                 }
             }
-            sb.append(types.get(min).name).append("\n");
+            sb.append(types.get(max).name).append("\n");
         }
         System.out.println(sb);
     }
