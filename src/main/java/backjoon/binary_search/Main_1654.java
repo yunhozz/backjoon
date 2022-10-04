@@ -20,10 +20,10 @@ public class Main_1654 {
         }
 
         Arrays.sort(arr);
-        long min = 0;
-        long max = arr[K - 1] + 1;
+        long min = 1;
+        long max = arr[K - 1];
 
-        while (min < max) {
+        while (min <= max) {
             long mid = (min + max) / 2;
             long count = 0;
 
@@ -31,11 +31,11 @@ public class Main_1654 {
                 count += (n / mid);
             }
             if (count < N) {
-                max = mid;
+                max = mid - 1;
             } else {
                 min = mid + 1;
             }
         }
-        System.out.println(min - 1);
+        System.out.println(max);
     }
 }
